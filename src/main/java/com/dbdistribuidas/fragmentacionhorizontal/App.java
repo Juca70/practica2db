@@ -99,27 +99,51 @@ public class App extends Application {
         middleControls.getChildren().add(columnsCheckBox);
         
         CheckBox cbNoControl = new CheckBox("No. Control");
-        cbNoControl.setOnAction(e -> column = "No_Control");
+        cbNoControl.setOnAction(e -> {
+            if (cbNoControl.isSelected()) {
+                setColumn("No_Control");
+            }
+                });
         VBox.setMargin(cbNoControl, new Insets(0, 10, 5, 0));
         
         CheckBox cbNombre = new CheckBox("Nombre");
-        cbNombre.setOnAction(e -> column = "Nombre");
+        cbNombre.setOnAction(e -> {
+            if (cbNombre.isSelected()) {
+                setColumn("Nombre");
+            }
+                });
         VBox.setMargin(cbNombre, new Insets(0, 10, 5, 0));
         
         CheckBox cbDomicilio = new CheckBox("Domicilio");
-        cbDomicilio.setOnAction(e -> column = "Domicilio");
+        cbDomicilio.setOnAction(e -> {
+            if (cbDomicilio.isSelected()) {
+                setColumn("Domicilio");
+            }
+                });
         VBox.setMargin(cbDomicilio, new Insets(0, 10, 5, 0));
         
         CheckBox cbCiudad = new CheckBox("Ciudad");
-        cbCiudad.setOnAction(e -> column = "Ciudad");
+        cbCiudad.setOnAction(e -> {
+            if (cbCiudad.isSelected()) {
+                setColumn("Ciudad");
+            }
+                });
         VBox.setMargin(cbCiudad, new Insets(0, 10, 5, 0));
         
         CheckBox cbEdad = new CheckBox("Edad");
-        cbEdad.setOnAction(e -> column = "Ciudad");
+        cbEdad.setOnAction(e -> {
+            if(cbEdad.isSelected()) {
+                setColumn("Edad");
+            }
+                });
         VBox.setMargin(cbEdad, new Insets(0, 10, 5, 0));
         
         CheckBox cbOficio = new CheckBox("Oficio");
-        cbOficio.setOnAction(e -> column = "Oficio");
+        cbOficio.setOnAction(e -> {
+            if (cbOficio.isSelected()) {
+                setColumn("Oficio");
+            }
+                });
         VBox.setMargin(cbOficio, new Insets(0, 10, 5, 0));
         
         columnsCheckBox.getChildren().addAll(
@@ -134,32 +158,32 @@ public class App extends Application {
         ToggleGroup tgOperators = new ToggleGroup();
         
         RadioButton rblessThan = new RadioButton("<");
-        rblessThan.setOnAction(e -> operator = "<");
+        rblessThan.setOnAction(e -> setOperator("<"));
         rblessThan.setToggleGroup(tgOperators);
         HBox.setMargin(rblessThan, new Insets(0, 20, 0, 20));
         
         RadioButton rbgreaterThan = new RadioButton(">");
-        rbgreaterThan.setOnAction(e -> operator = ">");
+        rbgreaterThan.setOnAction(e -> setOperator(">"));
         rbgreaterThan.setToggleGroup(tgOperators);
         HBox.setMargin(rbgreaterThan, new Insets(0, 20, 0, 20));
         
         RadioButton rblessThanEqual = new RadioButton("<=");
-        rblessThanEqual.setOnAction(e -> operator = "<=");
+        rblessThanEqual.setOnAction(e -> setOperator("<="));
         rblessThanEqual.setToggleGroup(tgOperators);
         HBox.setMargin(rblessThanEqual, new Insets(0, 20, 0, 20));
         
-        RadioButton rbgreaterThanEqual = new RadioButton("=>");
-        rbgreaterThanEqual.setOnAction(e -> operator = "=>");
+        RadioButton rbgreaterThanEqual = new RadioButton(">=");
+        rbgreaterThanEqual.setOnAction(e -> setOperator(">="));
         rbgreaterThanEqual.setToggleGroup(tgOperators);
         HBox.setMargin(rbgreaterThanEqual, new Insets(0, 20, 0, 20));
         
         RadioButton rbEquals = new RadioButton("=");
-        rbEquals.setOnAction(e -> operator = "=");
+        rbEquals.setOnAction(e -> setOperator("="));
         rbEquals.setToggleGroup(tgOperators);
         HBox.setMargin(rbEquals, new Insets(0, 20, 0, 20));
         
         RadioButton rbNotEqual = new RadioButton("<>");
-        rbNotEqual.setOnAction(e -> operator = "<>");
+        rbNotEqual.setOnAction(e -> setOperator("<>"));
         rbNotEqual.setToggleGroup(tgOperators);
         HBox.setMargin(rbNotEqual, new Insets(0, 20, 0, 20));
         
@@ -201,7 +225,7 @@ public class App extends Application {
         initConn();
         
         btnPredicate.setOnAction((e) -> {
-            value = tfInput.getText();
+            setValue(tfInput.getText());
             updateTable();
         });
         
@@ -237,6 +261,22 @@ public class App extends Application {
         tblData.setItems( FXCollections.observableArrayList(appService.where(condition)));
         
     }
+
+    public void setColumn(String column) {
+        this.column = column;
+        System.out.println(column);
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+        System.out.println(value);
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
+        System.out.println(operator);
+    }
+    
     
     
     public static void main(String[] args) {
